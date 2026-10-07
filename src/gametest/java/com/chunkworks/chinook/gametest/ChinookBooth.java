@@ -20,7 +20,7 @@ package com.chunkworks.chinook.gametest;
 import com.chunkworks.rotorcraft.Aircraft;
 import com.chunkworks.rotorcraft.RotorcraftContent;
 import com.chunkworks.rotorcraft.SlungLoad;
-import com.chunkworks.rotorcraft.client.RotorcraftKeys;
+import com.chunkworks.vanillawheels.client.Keys;
 import com.chunkworks.rotorcraft.domain.FlightInput;
 import com.chunkworks.vanillawheels.Vehicle;
 import com.mojang.blaze3d.platform.NativeImage;
@@ -453,11 +453,11 @@ public final class ChinookBooth {
                 mc.player.setYRot(EAST);
                 mc.player.setXRot(18.0f);
             }
-            RotorcraftKeys.ASCEND.setDown(true);
+            Keys.UP.setDown(true);
         }));
         // The rotor started spooling when the pilot boarded, twenty ticks before; it spools in 80 ticks,
         // so it lifts some 52 ticks into the climb, and a dozen more and the drift take it five up.
-        s.add(new Step(t += 64, () -> RotorcraftKeys.ASCEND.setDown(false)));
+        s.add(new Step(t += 64, () -> Keys.UP.setDown(false)));
         s.add(new Step(t += 15, () -> mc.options.keyUp.setDown(true)));
         s.add(new Step(t += 30, () -> mc.options.keyUp.setDown(false)));
         s.add(new Step(t += 8, () -> {
