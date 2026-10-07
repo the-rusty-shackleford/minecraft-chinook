@@ -48,16 +48,17 @@ uv run --no-project --with numpy python devtools/art/build.py sounds    # needs 
 ```
 
 The model is built in metres with the shared `tools/bbgen/metric.py`, from the CH-47's published
-dimensions and the U.S. Army's 3-view (`devtools/art/reference/`, with `SOURCES.md`), whose side view
-it lies on within a few pixels. The origin is on the ground midway between the rotors, the hull's
-middle; Rotorcraft's `hull` names five boxes (the fuselage with its pods, the two pylons with the
-engines, the shaft tunnel, the wheels), and the rotors' radii keep it drawn while only a blade is in
-view. The windshield, the side windows and the cockpit's rounded roof edge meet along the
-windshield's slant a pixel at a time, under a pillar at each corner, as the Huey's do. The folders the profiles select by: `paint` (dyed), `glass` (translucent), `cockpit` (the
-windshield's posts, hidden from riders' own eyes), `rotor_fwd` and `rotor_aft` (spun, opposite ways),
-`ramp` (the door, swung down about its foot), `spray_boom` (drawn while a sprayer is fitted),
-`lenses` (lit with the lights), `needle_speed` and `needle_fuel` (the pilot's gauges). The rotor loop
-is cut from a CC0 recording made aboard a CH-47 (`devtools/art/sounds/SOURCES.md`).
+dimensions and the U.S. Army's 3-view (`devtools/art/reference/`, with `SOURCES.md`), whose side
+view it lies on within a few pixels. The origin is on the ground midway between the rotors, the
+hull's middle; Rotorcraft's `hull` names five boxes (the fuselage with its pods, the two pylons with
+the engines, the shaft tunnel, the wheels), and the rotors' radii keep it drawn while only a blade
+is in view. The windshield, the side windows and the cockpit's rounded roof edge meet along the
+windshield's slant a pixel at a time, under a pillar at each corner, as the Huey's do. The folders
+the profiles select by: `paint` (dyed), `glass` (translucent), `cockpit` (the windshield's posts,
+hidden from riders' own eyes), `rotor_fwd` and `rotor_aft` (spun, opposite ways), `ramp` (the door,
+swung down about its foot), `spray_boom` (drawn while a sprayer is fitted), `lenses` (lit with the
+lights), `needle_speed` and `needle_fuel` (the pilot's gauges). The rotor loop is cut from a CC0
+recording made aboard a CH-47 (`devtools/art/sounds/SOURCES.md`).
 
 ## Verifying it
 
