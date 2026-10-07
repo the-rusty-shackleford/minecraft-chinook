@@ -13,11 +13,12 @@ A life-size Boeing CH-47 for Rotorcraft (Rusty, 2026-10-06): data only, nesting 
 nests Vanilla Wheels). The plan is `~/.claude/plans/i-want-to-add-curious-locket.md`; D-0001 is the
 model, the origin, the ramp and the sound.
 
-## Status (2026-10-07): built; gated and filmed as recorded in the git log
+## Status (2026-10-07): built, gated and filmed; awaiting Rusty
 
+- Gate: 6 GameTests and the booth (12 checks) green.
 - Built: the model and its wheel, both profiles (with Rotorcraft's hull and rotor radii), the
-  chassis recipe and unlock, the lang, the rotor loop, six gametests and the booth.
-- Not done: Rusty's review of the model, the playtest on the 4070, the wiki page.
+  chassis recipe and unlock, the lang, the rotor loop, the booth, the wiki page.
+- Not done: Rusty's review of the model, the playtest on the 4070.
 - Nothing released; no GitHub repo yet (created at release on Rusty's word). Ships with Vanilla
   Wheels 1.12.0, Rotorcraft 1.0.0 and the Huey as pack 1.75.0.
 
