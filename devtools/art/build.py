@@ -174,26 +174,43 @@ def cockpit(c: Chinook) -> None:
     """Over the nose: the windshield's two panes and its post, the side windows back to the cabin,
     the cockpit roof under the forward pylon, the panel and the pilots' seats."""
     low, high = WINDSHIELD
+    wall_top, edge_top = (HW, 3.10), (HW - 0.20, ROOF)    # the cockpit's round upper edge
 
     def at(y):
-        return (low[0] + (y - low[1]) / (high[1] - low[1]) * (high[0] - low[0]), y)
+        """The slant's station at height y."""
+        return low[0] + (y - low[1]) / (high[1] - low[1]) * (high[0] - low[0])
 
+    def edge(y):
+        """How wide the cockpit is at height y: the side wall, then the round edge."""
+        if y <= wall_top[1]:
+            return HW
+        return wall_top[0] + (y - wall_top[1]) / (edge_top[1] - wall_top[1]) * (edge_top[0] - wall_top[0])
+
+    # Every piece meets its neighbour along the slant a pixel at a time, as on the Huey: the panes
+    # across in bands a pixel high, as wide as the cockpit at their height; the side windows back from
+    # the slant in bands a pixel high; a pillar along each corner; the round edge cut to the slant.
     joint = {"north": None, "south": None}
-    for i, (ya, yb, hw) in enumerate(((low[1], 2.95, HW - 0.04), (2.95, high[1], HW - 0.20))):
-        c.along("glass/windshield", f"pane{i}_l", at(ya), at(yb), 0.05, hw, 0.04, "glass", grow=0.0, faces=joint)
-        c.along("glass/windshield", f"pane{i}_r", at(ya), at(yb), -hw, -0.05, 0.04, "glass", grow=0.0, faces=joint)
+    for i, (ya, yb) in enumerate(bands(low[1], high[1])):
+        hw = edge((ya + yb) / 2) - 0.015
+        c.along("glass/windshield", f"pane{i:02d}", (at(ya), ya), (at(yb), yb), -hw, hw, 0.04, "glass", grow=0.0, faces=joint)
     c.along("cockpit/frame", "post", low, high, -0.05, 0.05, 0.08, "frame")
     c.along("paint/windshield", "sill", (low[0] - 0.03, low[1] - 0.01), (low[0] + 0.03, low[1] + 0.03), -HW, HW, 0.05, "paint")
-    # The side windows: glass from the slant back to the cabin's front, framed.
-    for i, (ya, yb) in enumerate(((2.00, 2.40), (2.40, 2.80), (2.80, 3.12))):
-        c.pair("glass/side", f"side{i}", HW - 0.03, HW - 0.01, ya, yb, at(yb)[0] - 0.02, 2.30, "glass", faces={"up": None, "down": None})
-    # The cockpit's sides below the windows, from the panel back to the cabin.
+    for i, (ya, yb) in enumerate(bands(low[1], wall_top[1])):
+        c.pair("glass/side", f"side{i:02d}", HW - 0.03, HW - 0.01, ya, yb, at((ya + yb) / 2), 2.30, "glass", faces={"up": None, "down": None})
+    c.along("paint/windshield", "pillar", (at(low[1]), low[1]), (at(wall_top[1]), wall_top[1]), HW - 0.05, HW + 0.012, 0.09, "paint", mirror=True)
+    c.rod("paint/windshield", "corner_rod", (wall_top[0] - 0.01, wall_top[1], at(wall_top[1])),
+          (edge_top[0] - 0.01, edge_top[1], at(edge_top[1])), 0.08, "paint", mirror=True)
     c.pair("paint/cab", "side_low", HW - SKIN, HW, COCKPIT_FLOOR - 0.10, 2.00, PANEL_S - 0.02, 2.42, "paint")
-    c.pair("cockpit/frame", "side_post", HW - 0.06, HW, 2.00, 3.12, 1.30, 1.36, "frame")
+    c.pair("cockpit/frame", "side_post", HW - 0.06, HW, 2.00, wall_top[1], 1.30, 1.36, "frame")
     c.pair("paint/cab", "side_back", HW - SKIN, HW, 2.00, ROOF, 2.30, 2.42, "paint")
-    # The cockpit's roof, up from the windshield's head to the cabin's roof, and the upper corners.
+    # The cockpit's roof, from the windshield's head back to the cabin, and its round edges, cut to
+    # the slant in slices meeting edge to edge.
     c.box("paint/cab", "roof", -(HW - 0.20), HW - 0.20, ROOF - SKIN, ROOF, high[0] - 0.05, 2.42, "paint")
-    c.across("paint/cab", "upper", (HW, 3.10), (HW - 0.20, ROOF), at(3.1)[0], 2.42, SKIN, "paint")
+    n = 4
+    for k in range(n):
+        a = (wall_top[0] + (edge_top[0] - wall_top[0]) * k / n, wall_top[1] + (edge_top[1] - wall_top[1]) * k / n)
+        b = (wall_top[0] + (edge_top[0] - wall_top[0]) * (k + 1) / n, wall_top[1] + (edge_top[1] - wall_top[1]) * (k + 1) / n)
+        c.across("paint/cab", f"upper{k}", a, b, at((a[1] + b[1]) / 2), 2.42, SKIN, "paint", grow=0.0)
     c.box("floor", "cockpit_floor", -(HW - SKIN), HW - SKIN, COCKPIT_FLOOR - 0.06, COCKPIT_FLOOR, 0.75, 2.42, "floor")
     # The instrument panel, its glare shield, two working gauges in front of the pilot (the right seat).
     c.box("panel", "panel", -1.12, 1.12, 1.55, 2.00, 0.72, 0.82, "panel", faces={"north": "instruments"})
@@ -207,6 +224,15 @@ def cockpit(c: Chinook) -> None:
         c.box("seats", f"pilot_pan_{tag}", x - 0.27, x + 0.27, COCKPIT_FLOOR + 0.20, PILOT_Y - 0.04, 1.35, 1.85, "seat")
         c.box("seats", f"pilot_back_{tag}", x - 0.27, x + 0.27, PILOT_Y - 0.04, 2.35, 1.85, 1.95, "seat")
         c.box("seats", f"pilot_leg_{tag}", x - 0.20, x + 0.20, COCKPIT_FLOOR, COCKPIT_FLOOR + 0.20, 1.40, 1.80, "dark")
+
+
+def bands(y0: float, y1: float):
+    """The heights from y0 to y1 in bands a pixel high, the last one whatever is left."""
+    out, y = [], y0
+    while y < y1 - 1e-6:
+        out.append((y, min(y + 1.0 / PX, y1)))
+        y += 1.0 / PX
+    return out
 
 
 PORTHOLES = (3.44, 5.48, 7.49, 9.49, 11.52)
@@ -237,7 +263,10 @@ def cabin(c: Chinook) -> None:
     c.box("dark", "door_handle", -(HW + 0.06), -(HW + 0.03), 1.55, 1.62, b - 0.30, b - 0.14, "dark")
     # Inside: the floor, a bulkhead behind the pilots, three rows of troop seats facing forward.
     c.box("floor", "floor", -(HW - SKIN), HW - SKIN, FLOOR - 0.06, FLOOR, s0, s1, "floor")
-    c.box("interior", "bulkhead", -(HW - SKIN), HW - SKIN, COCKPIT_FLOOR, 2.95, 2.42, 2.48, "interior")
+    # Behind the pilots, an open frame two metres across, not a bulkhead: every seat of the front row
+    # looks through to the windshield (a doorway a metre wide left the outer seats facing a wall).
+    c.pair("interior", "frame_side", 1.00, HW - SKIN, COCKPIT_FLOOR, 2.95, 2.42, 2.48, "interior")
+    c.box("interior", "frame_head", -1.00, 1.00, 2.70, 2.95, 2.42, 2.48, "interior")
     for row, s_pan in enumerate(ROWS):
         s_back = s_pan + 0.44
         c.box("seats", f"row{row}_pan", -1.12, 1.12, SEAT_Y - 0.06, SEAT_Y - 0.02, s_pan, s_back, "webbing")
@@ -464,6 +493,9 @@ def vehicle_profile() -> dict:
         "glass": {"group": "glass"},
         "cockpit": {"group": "cockpit"},
         "sounds": {"engine": "chinook:rotor", "pitch": [0.6, 1.03], "volume": [0.4, 1.0]},
+        # Third person: 22 behind the pilot's eye (who sits in the nose) stands just clear of the aft
+        # rotor's disc; the length rule's 25 left the Chinook small on the screen.
+        "camera": 22.0,
         "repair": {"ingredient": {"tag": "c:ingots/steel"}, "full_cost": 32},
     }
 

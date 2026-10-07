@@ -27,6 +27,10 @@ right-click it empty-handed to lower or raise it; with it down, right-click the 
 lead and every animal on your leads nearby walks aboard while there is room; crouch and right-click
 with a lead to let them out behind.
 
+In third person the camera stands 22 blocks behind the pilot's eye (the profile's `camera`), just
+clear of the aft rotor. Between the cabin and the cockpit is an open frame, so the front row sees out
+of the windshield.
+
 Numbers: 1.2 blocks a tick at the top, 0.35 reverse; climbs 0.35 and descends 0.45 a tick; turns
 2.5 degrees a tick; tilts up to 10 degrees; 48 000 ticks of fuel; repaired with steel ingots, 32 for
 a wreck. Two landing lights under the nose light the ground 18 blocks ahead.
@@ -48,7 +52,8 @@ dimensions and the U.S. Army's 3-view (`devtools/art/reference/`, with `SOURCES.
 it lies on within a few pixels. The origin is on the ground midway between the rotors, the hull's
 middle; Rotorcraft's `hull` names five boxes (the fuselage with its pods, the two pylons with the
 engines, the shaft tunnel, the wheels), and the rotors' radii keep it drawn while only a blade is in
-view. The folders the profiles select by: `paint` (dyed), `glass` (translucent), `cockpit` (the
+view. The windshield, the side windows and the cockpit's rounded roof edge meet along the
+windshield's slant a pixel at a time, under a pillar at each corner, as the Huey's do. The folders the profiles select by: `paint` (dyed), `glass` (translucent), `cockpit` (the
 windshield's posts, hidden from riders' own eyes), `rotor_fwd` and `rotor_aft` (spun, opposite ways),
 `ramp` (the door, swung down about its foot), `spray_boom` (drawn while a sprayer is fitted),
 `lenses` (lit with the lights), `needle_speed` and `needle_fuel` (the pilot's gauges). The rotor loop
