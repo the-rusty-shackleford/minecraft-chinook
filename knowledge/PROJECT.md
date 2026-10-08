@@ -25,6 +25,10 @@ Nothing of the Chinook's own changes. It nests Rotorcraft 1.1.0, which nests Van
 The gametests read `Keys.UP` and `Condition.MAX` (`64a803e`). Rusty: "plus the Huey and Chinook
 rebuilt on the new Rotorcraft (both are released, so they need version bumps)".
 
+Released 2026-10-08 in pack 1.78.0: tag `v1.0.1` at `36fd8a0`; the release gate green with 6
+GameTests and the booth's 12 checks; sha1 `addbc8d2` on GitHub and on the server (the server repo's
+`knowledge/releases/pack-1.78.0.md`).
+
 ## Status: 1.0.0 released 2026-10-07 in pack 1.75.0
 
 - Gate: 6 GameTests and the booth (12 checks) green.
