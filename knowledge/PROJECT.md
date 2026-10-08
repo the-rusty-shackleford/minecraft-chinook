@@ -13,6 +13,18 @@ A life-size Boeing CH-47 for Rotorcraft (Rusty, 2026-10-06): data only, nesting 
 nests Vanilla Wheels). The plan is `~/.claude/plans/i-want-to-add-curious-locket.md`; D-0001 is the
 model, the origin, the ramp and the sound.
 
+## 1.0.1 — rebuilt on Rotorcraft 1.1.0, with the submarines
+
+Nothing of the Chinook's own changes. It nests Rotorcraft 1.1.0, which nests Vanilla Wheels 1.13.0:
+- the hull, crash judging and the keys are Vanilla Wheels' now (its D-0031);
+- a key acts once a press (its D-0032);
+- the boarding line names R, not Shift (its D-0033);
+- a broken Chinook set down from its item stays to be mended (Rotorcraft's D-0004; a friend's Huey
+  could not be).
+
+The gametests read `Keys.UP` and `Condition.MAX` (`64a803e`). Rusty: "plus the Huey and Chinook
+rebuilt on the new Rotorcraft (both are released, so they need version bumps)".
+
 ## Status: 1.0.0 released 2026-10-07 in pack 1.75.0
 
 - Gate: 6 GameTests and the booth (12 checks) green.
