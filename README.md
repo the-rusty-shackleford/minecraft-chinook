@@ -20,8 +20,11 @@ keys, fuel, paint, doors, cargo and repairs in Vanilla Wheels'.
 
 ## Using it
 
-Rotorcraft's keys fly it: Space climbs, Left Shift descends, R gets out (within three blocks of
-the ground), G hooks and lets go a sling load, V switches the crop sprayer, H the lights. Its
+Rotorcraft's keys fly it: Space and Left Shift move the collective lever, which stays where it is
+let go and holds the height in its detent (Rotorcraft 1.2.0's D-0005), W and S tilt the stick, R
+gets out (within three blocks of the ground), G hooks and lets go a sling load, V switches the crop
+sprayer, H the lights. Blows wear it a twelfth as much as a point of damage wears a boat (its
+`durability`, 12, Vanilla Wheels' D-0034: ten pistol rounds to a wreck). Its
 rotors spool for four seconds before it lifts. The ramp is Vanilla Wheels' door: crouch and
 right-click it empty-handed to lower or raise it; with it down, right-click the Chinook holding a
 lead and every animal on your leads nearby walks aboard while there is room; crouch and right-click

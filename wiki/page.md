@@ -44,14 +44,16 @@ before it will lift.
 |---|---|
 | **W / S** | fly forward / back |
 | **A / D** | turn |
-| **Space** | climb |
-| **Left Shift** | descend (it slows down by itself near the ground, so holding it all the way down always lands softly) |
+| **Space** | collective up: climb |
+| **Left Shift** | collective down: descend (it slows down by itself near the ground, so pulling it all the way down always lands softly) |
 | **R** | get out (only within three blocks of the ground) |
 | **G** | hook or let go a load |
 | **V** | crop sprayer on / off |
 | **H** | lights |
 
-Let go of everything and it hovers. **Nobody aboard is ever hurt by flying**, but flying into things
+The collective is a lever that stays where you leave it: in its middle notch (the white tick on
+the dial over your hotbar) it hovers; above it climbs, below it descends. Hold W or S longer
+to go faster. **Nobody aboard is ever hurt by flying**, but flying into things
 damages the helicopter: repair it like any vehicle, with **steel ingots**.
 
 ![The pilot's view](img/cockpit.webp)
@@ -61,7 +63,7 @@ damages the helicopter: repair it like any vehicle, with **steel ingots**.
 ## Carrying the Sling Container
 
 Hover over the loaded container until the hook is just above its ring and press **G**. Climb and it
-lifts off. Hold **Shift** to set it down softly, then press **G** again to let go.
+lifts off. Pull the lever down with **Shift** to set it down softly, then press **G** again to let go.
 
 ![The Chinook carrying the Sling Container](img/sling.webp)
 

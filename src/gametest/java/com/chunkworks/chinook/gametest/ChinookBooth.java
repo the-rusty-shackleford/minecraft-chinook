@@ -21,6 +21,7 @@ import com.chunkworks.rotorcraft.Aircraft;
 import com.chunkworks.rotorcraft.RotorcraftContent;
 import com.chunkworks.rotorcraft.SlungLoad;
 import com.chunkworks.vanillawheels.client.Keys;
+import com.chunkworks.rotorcraft.domain.Flight;
 import com.chunkworks.rotorcraft.domain.FlightInput;
 import com.chunkworks.vanillawheels.Vehicle;
 import com.mojang.blaze3d.platform.NativeImage;
@@ -385,6 +386,7 @@ public final class ChinookBooth {
         })));
         s.add(new Step(t += 100, () -> onServer(mc, sp -> withChinook(sp, a -> {
             a.setScriptedFlight(new FlightInput(0, 0, 0, true, false, 0.0));
+            a.setCollective(Flight.HOVER);
             a.setPos(a.getX(), ground + 7.0, a.getZ());
         }))));
         s.add(new Step(t += 30, () -> onServer(mc, sp -> withChinook(sp, a -> aim(sp, middle(a).add(9.0, -6.0, -19.0), middle(a).add(0.0, 1.0, 0.0))))));
@@ -412,7 +414,7 @@ public final class ChinookBooth {
             a.hookKey(sp);
             a.setScriptedFlight(new FlightInput(0, 0, 1, true, false, 0.0));
         }))));
-        s.add(new Step(t += 25, () -> onServer(mc, sp -> withChinook(sp, a -> a.setScriptedFlight(new FlightInput(0, 0, 0, true, false, 0.0))))));
+        s.add(new Step(t += 25, () -> onServer(mc, sp -> withChinook(sp, a -> { a.setScriptedFlight(new FlightInput(0, 0, 0, true, false, 0.0)); a.setCollective(Flight.HOVER); }))));
         s.add(new Step(t += 40, () -> onServer(mc, sp -> withChinook(sp, a -> aim(sp, middle(a).add(-3.0, -6.0, -22.0), middle(a).add(0.0, -3.0, 0.0))))));
         s.add(new Step(t += SETTLE, () -> {
             SlungLoad load = entity(mc, box) instanceof SlungLoad l ? l : null;
@@ -457,8 +459,14 @@ public final class ChinookBooth {
         }));
         // The rotor started spooling when the pilot boarded, twenty ticks before; it spools in 80 ticks,
         // so it lifts some 52 ticks into the climb, and a dozen more and the drift take it five up.
-        s.add(new Step(t += 64, () -> Keys.UP.setDown(false)));
-        s.add(new Step(t += 15, () -> mc.options.keyUp.setDown(true)));
+        // The collective is a lever that stays up (Rotorcraft 1.2.0's D-0005): let go of Space, the pilot
+        // holds Shift two thirds of a second to bring it from the top into its detent, and it holds there.
+        s.add(new Step(t += 64, () -> {
+            Keys.UP.setDown(false);
+            Keys.DOWN.setDown(true);
+        }));
+        s.add(new Step(t += 13, () -> Keys.DOWN.setDown(false)));
+        s.add(new Step(t += 2, () -> mc.options.keyUp.setDown(true)));
         s.add(new Step(t += 30, () -> mc.options.keyUp.setDown(false)));
         s.add(new Step(t += 8, () -> {
             Aircraft a = client(mc, chinook);
