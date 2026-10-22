@@ -21,8 +21,9 @@ repairs are [Vanilla Wheels](/wiki/vanilla-wheels)'s.
    | steel block | steel block | steel block |
    | steel block | steel block | steel block |
 
-2. **Build it** on a **Mechanic Lift** with the chassis, an **engine** and **four wheels**. It comes
-   out Army green; put a dye in the lift and press **Paint** to colour it.
+2. **Build it** on a **Mechanic Lift** with the chassis, an **engine** and **four wheels**. It's
+   bigger than the lift, so it sticks out over the front; lift off with Space. It comes out Army
+   green; put a dye in the lift and press **Paint** to colour it.
 
 ![A red Chinook](img/painted.webp)
 
@@ -54,7 +55,9 @@ before it will lift.
 The collective is a lever that stays where you leave it: in its middle notch (the white tick on
 the dial over your hotbar) it hovers; above it climbs, below it descends. Hold W or S longer
 to go faster. **Nobody aboard is ever hurt by flying**, but flying into things
-damages the helicopter: repair it like any vehicle, with **steel ingots**.
+damages the helicopter: repair it like any vehicle, with **steel ingots**. You can hear a Chinook
+from **200 blocks** away, if that far is loaded for you. From inside, the windows are clear: you look
+straight out, and other people still see glass.
 
 ![The pilot's view](img/cockpit.webp)
 

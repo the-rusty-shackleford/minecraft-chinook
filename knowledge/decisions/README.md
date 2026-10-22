@@ -13,3 +13,4 @@ tags: [index]
 | Id | Topic |
 |----|-------|
 | D-0001 | A life-size CH-47, modelled by script from published dimensions and the Army's 3-view, its origin between the rotors |
+| D-0002 | The rotors heard 200 blocks off; the windows are the cockpit's glass, not drawn for your own eyes |

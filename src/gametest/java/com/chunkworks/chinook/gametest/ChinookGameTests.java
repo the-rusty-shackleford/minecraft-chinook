@@ -197,7 +197,7 @@ public final class ChinookGameTests {
         helper.succeed();
     }
 
-    @GameTest(template = "pad", timeoutTicks = 200)
+    @GameTest(template = "pad", timeoutTicks = 500)
     public void theLiftBuildsItFromItsChassisAnEngineAndFourWheelsAndPaintsIt(GameTestHelper helper) {
         floor(helper);
         BlockPos controller = new BlockPos(24, FLOOR, 22);
@@ -232,8 +232,16 @@ public final class ChinookGameTests {
             helper.assertTrue(menu.clickMenuButton(sp, LiftMenu.PAINT_BUTTON), "painted");
             helper.assertValueEqual(a.paint(), DyeColor.RED, "red");
             sp.connection.disconnect(net.minecraft.network.chat.Component.literal("test complete"));
-            helper.succeed();
+            // Built through the lift's front posts (Vanilla Wheels' D-0046), it flies off them unhurt.
+            a.setFuel(a.tank().capacity());
+            crew(helper, a);
+            a.setScriptedFlight(fly(0, 0, 1));
         });
+        double deck = a.getY();
+        helper.runAfterDelay(LiftMotion.JOB + 4, () -> helper.succeedWhen(() -> {
+            helper.assertTrue(a.getY() > deck + 6.0, "up off the lift: " + (a.getY() - deck));
+            helper.assertValueEqual(a.condition(), com.chunkworks.vanillawheels.domain.Condition.MAX, "the posts it stood through cost it nothing");
+        }));
     }
 
     @GameTest(template = "pad", timeoutTicks = 900)

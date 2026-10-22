@@ -58,11 +58,14 @@ the engines, the shaft tunnel, the wheels), and the rotors' radii keep it drawn 
 is in view and are how far a spinning rotor strikes what it touches (both discs pass over anyone
 standing beside it). The windshield, the side windows and the cockpit's rounded roof edge meet along
 the windshield's slant a pixel at a time, under a pillar at each corner, as the Huey's do. The
-folders the profiles select by: `paint` (dyed), `glass` (translucent), `cockpit` (the windshield's
-posts, hidden from riders' own eyes), `rotor_fwd` and `rotor_aft` (spun, opposite ways), `ramp` (the
+folders the profiles select by: `paint` (dyed), `glass` (translucent; the cockpit's too, so never
+drawn for a rider looking out through their own eyes, D-0002), `cockpit` (the windshield's posts,
+hidden from riders' own eyes), `rotor_fwd` and `rotor_aft` (spun, opposite ways), `ramp` (the
 door, swung down about its foot), `spray_boom` (drawn while a sprayer is fitted), `lenses` (lit with
 the lights), `needle_speed` and `needle_fuel` (the pilot's gauges). The rotor loop is cut from a CC0
-recording made aboard a CH-47 (`devtools/art/sounds/SOURCES.md`).
+recording made aboard a CH-47 (`devtools/art/sounds/SOURCES.md`); it carries 200 blocks, fading
+evenly to nothing there (D-0002). Built on the Mechanic Lift, it stands through the deck's front
+posts and sticks out over the front (Vanilla Wheels' D-0046), and lifts off on Space.
 
 ## Verifying it
 

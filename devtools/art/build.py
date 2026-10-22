@@ -476,6 +476,7 @@ def vehicle_profile() -> dict:
         "engine": {"max_speed": 1.2, "acceleration": 0.025, "reverse_speed": 0.35, "brake": 0.035},
         "climb": 0.5,
         "mass": 4.0,
+        "durability": 12.0,
         "fuel": {"capacity": 48000},
         "storage": {"chests": [{"at": v(0.82, FLOOR, 8.30), "yaw": 270, "scale": 0.8, "rows": 6},
                                {"at": v(-0.82, FLOOR, 8.30), "yaw": 90, "scale": 0.8, "rows": 6}]},
@@ -491,7 +492,9 @@ def vehicle_profile() -> dict:
         "headlights": {"at": [v(0.42, BELLY - 0.08, 1.10), v(-0.42, BELLY - 0.08, 1.10)], "part": {"group": "lenses"}, "range": 18},
         "paint": {"part": {"group": "paint"}, "default": "green", "factory": "#424a37"},
         "glass": {"group": "glass"},
-        "cockpit": {"group": "cockpit"},
+        # The glass is the cockpit's too (Vanilla Wheels' D-0031): not drawn for a rider looking out through
+        # their own eyes. Faded in front of the eye, Iris drew the pane, not the world behind it, under shaders.
+        "cockpit": {"group": ["cockpit", "glass"]},
         "sounds": {"engine": "chinook:rotor", "pitch": [0.6, 1.03], "volume": [0.4, 1.0]},
         # Third person: 22 behind the pilot's eye (who sits in the nose) stands just clear of the aft
         # rotor's disc; the length rule's 25 left the Chinook small on the screen.
@@ -540,7 +543,8 @@ def unlock(recipe: str, tag: str) -> dict:
             "rewards": {"recipes": [recipe]}}
 
 
-SOUNDS_JSON = {"rotor": {"sounds": [{"name": "chinook:rotor", "attenuation_distance": 80}]}}
+# Heard 200 blocks off, fading evenly to nothing there (Rusty, 2026-10-22, on a friend's ask).
+SOUNDS_JSON = {"rotor": {"sounds": [{"name": "chinook:rotor", "attenuation_distance": 200}]}}
 LANG = {"vehicle.chinook.chinook": "Chinook"}
 
 

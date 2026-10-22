@@ -13,6 +13,15 @@ A life-size Boeing CH-47 for Rotorcraft (Rusty, 2026-10-06): data only, nesting 
 nests Vanilla Wheels). The plan is `~/.claude/plans/i-want-to-add-curious-locket.md`; D-0001 is the
 model, the origin, the ramp and the sound.
 
+## 1.2.0 — built 2026-10-22, not released (heard from 200 blocks, clear windows; buildable again; D-0002)
+
+From Rusty's friends' asks, 2026-10-22, as the Huey's 1.3.0: the rotors carry 200 blocks (were 80) and
+the glass is the cockpit's. Moving its GameTests onto Vanilla Wheels 1.18.3 found the lift had refused
+to build a Chinook since 1.17.0, on the box too (Vanilla Wheels' D-0046): `theLiftBuildsIt...` now
+builds it through the deck's front posts, paints it and flies it off the lift unhurt. Nests Rotorcraft
+1.3.0. `build.py` now writes `durability` 12, which 1.1.0 had put in the profile by hand. Release gate
+green: 6 GameTests, 13 booth checks. Its glass was not photographed under shaders (the Huey's was).
+
 ## 1.1.1 — rebuilt on Rotorcraft 1.2.1 and Vanilla Wheels 1.16.0, released 2026-10-12 in pack 1.85.0
 
 Nothing of the Chinook's own changes. It nests Rotorcraft 1.2.1, which nests Vanilla Wheels 1.16.0

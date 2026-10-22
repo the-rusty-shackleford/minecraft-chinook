@@ -3,7 +3,7 @@
     "sounds": [
       {
         "name": "chinook:rotor",
-        "attenuation_distance": 80
+        "attenuation_distance": 200
       }
     ]
   }
